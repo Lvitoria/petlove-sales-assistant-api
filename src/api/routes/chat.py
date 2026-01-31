@@ -18,9 +18,8 @@ async def chat(
     """
     try:
         chat_service = ChatService()
-        response_content = chat_service.get_response(chat_message.message)
+        response_content = chat_service.get_response(chat_message.question)
         return {
-            "status": "success",
             "response": response_content
         }
     except Exception as e:
