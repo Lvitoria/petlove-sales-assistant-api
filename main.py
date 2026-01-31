@@ -1,5 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request
 from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage
 
 load_dotenv()
 
@@ -29,3 +31,36 @@ app = FastAPI(
 def health_check():
     """Verifica o status da API."""
     return {"status": "ok"}
+
+@app.post('/chat',
+    summary="Chat com o modelo OpenAI",
+    description="Endpoint para enviar uma mensagem para o modelo OpenAI e receber uma resposta.",
+    tags=["Chat"]
+)
+async def chat(request: Request) -> dict:
+    """Envia uma mensagem para o modelo OpenAI e recebe uma resposta."""
+    try:
+        data = await request.json()
+        message = data.get("message")
+
+        if not message:
+            raise HTTPException(status_code=400, detail="Message is required")
+        
+        llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+        messages = [
+            HumanMessage(content=f"{message}")
+        ]
+
+        response = llm.invoke(messages)
+        
+        print(f"Response: {response.content}")
+
+        return {
+            "status": "success",
+            "response": response.content
+        }
+    except Exception as e: 
+        raise HTTPException(
+                status_code=500, 
+                detail=f"Internal server error: {e}"
+            )
