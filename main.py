@@ -1,7 +1,8 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from uvicorn import run
 
 load_dotenv()
@@ -28,6 +29,9 @@ app = FastAPI(
 if __name__ == "__main__":
     run("main:app", host="127.0.0.1", port=8000, reload=True)
 
+class ChatMessage(BaseModel):
+    message: str
+
 @app.get("/health", 
     summary="Verificação de saúde da API",
     description="Endpoint para verificar se a API está funcionando corretamente.",
@@ -41,18 +45,13 @@ def health_check():
     description="Endpoint para enviar uma mensagem para o modelo OpenAI e receber uma resposta.",
     tags=["Chat"]
 )
-async def chat(request: Request) -> dict:
+async def chat(chat_message: ChatMessage) -> dict:
     """Envia uma mensagem para o modelo OpenAI e recebe uma resposta."""
     try:
-        data = await request.json()
-        message = data.get("message")
-
-        if not message:
-            raise HTTPException(status_code=400, detail="Message is required")
-        
         llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
         messages = [
-            HumanMessage(content=f"{message}")
+            SystemMessage(content="Você é um assistente de vendas da Petlove. Responda sempre em português do Brasil."),
+            HumanMessage(content=chat_message.message)
         ]
 
         response = llm.invoke(messages)
