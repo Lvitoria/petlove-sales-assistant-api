@@ -5,7 +5,7 @@ from src.services.chat_service import ChatService
 router = APIRouter()
 
 @router.post(
-    '/chat',
+    '/question-and-answer',
     summary="Chat com o modelo OpenAI",
     description="Endpoint para enviar uma mensagem para o modelo OpenAI e receber uma resposta.",
     tags=["Chat"]
@@ -18,9 +18,8 @@ async def chat(
     """
     try:
         chat_service = ChatService()
-        response_content = chat_service.get_response(chat_message.message)
+        response_content = chat_service.get_response(chat_message.question)
         return {
-            "status": "success",
             "response": response_content
         }
     except Exception as e:
