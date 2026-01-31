@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException, Request
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
+from uvicorn import run
 
 load_dotenv()
 
@@ -23,6 +24,9 @@ app = FastAPI(
         }
     ]
 )
+
+if __name__ == "__main__":
+    run("main:app", host="127.0.0.1", port=8000, reload=True)
 
 @app.get("/health", 
     summary="Verificação de saúde da API",
