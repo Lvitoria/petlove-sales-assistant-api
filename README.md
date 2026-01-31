@@ -38,20 +38,12 @@ A aplicação estará disponível em `http://127.0.0.1:8000/`.
 
 Existem duas formas equivalentes para rodar a aplicação em modo de desenvolvimento (com reload automático):
 
-1.  **Executando o script principal:**
-
-    Este método é uma forma conveniente de iniciar o servidor Uvicorn, conforme configurado em `main.py`.
-
-    ```bash
-    python main.py
-    ```
-
-2.  **Usando o comando Uvicorn diretamente:**
+1.  **Usando o comando Uvicorn diretamente:**
 
     Esta é a forma padrão de executar aplicações FastAPI com Uvicorn.
 
     ```bash
-    uvicorn main:app --reload
+    uvicorn src.main:app --reload
     ```
 
 Em ambos os casos, a aplicação estará disponível em `http://127.0.0.1:8000/`.
