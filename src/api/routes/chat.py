@@ -8,7 +8,7 @@ router = APIRouter()
     '/question-and-answer',
     summary="Chat com o modelo OpenAI",
     description="Endpoint para enviar uma mensagem para o modelo OpenAI e receber uma resposta.",
-    tags=["Chat"]
+    tags=["Question and Answer"]
 )
 async def chat(
     chat_message: ChatMessage

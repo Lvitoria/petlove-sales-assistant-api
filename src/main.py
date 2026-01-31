@@ -22,8 +22,8 @@ app = FastAPI(
             "description": "Endpoints para verificar o status da API."
         },
         {
-            "name": "Chat",
-            "description": "Endpoints para enviar mensagens para o modelo OpenAI."
+            "name": "Question and Answer",
+            "description": "Endpoints para enviar perguntas e receber respostas do assistente de vendas."
         }
     ]
 )
@@ -56,4 +56,4 @@ async def validation_exception_handler(request, exc):
     )
 
 app.include_router(health.router, prefix="/api/v1")
-app.include_router(chat.router, prefix="/api/v1")
+app.include_router(chat.router, prefix="/api")
