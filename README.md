@@ -27,4 +27,9 @@ Siga os passos abaixo para configurar e executar o projeto:
     ```bash
     cp .env.example .env
     ```
+5. Caso queira sair 
+    ```bash
+    deactivate
+    ```
+
 A aplicação estará disponível em `http://127.0.0.1:5000/`.
