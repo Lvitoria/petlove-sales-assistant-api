@@ -1,7 +1,5 @@
 # API de Assistente de Vendas Petlove 🐾
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 ## 📖 Visão Geral
 
 Bem-vindo à **API de Assistente de Vendas Petlove**, um assistente de vendas sofisticado e alimentado por IA, projetado para se integrar perfeitamente à plataforma de e-commerce da Petlove. Este projeto utiliza uma arquitetura de **Geração Aumentada por Recuperação (RAG)** para fornecer respostas precisas, cientes do contexto e úteis às consultas dos clientes, baseadas em um catálogo de produtos em tempo real.
