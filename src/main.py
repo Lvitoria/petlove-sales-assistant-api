@@ -55,5 +55,5 @@ async def validation_exception_handler(request, exc):
         content={"detail": "Erro de validação", "erros": errors},
     )
 
-app.include_router(health.router, prefix="/api/v1")
+app.include_router(health.router, prefix="/api")
 app.include_router(chat.router, prefix="/api")
