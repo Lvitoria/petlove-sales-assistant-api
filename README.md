@@ -113,3 +113,8 @@ Você pode rodar o projeto de duas formas: nativamente com Python ou usando Dock
 
 Após iniciar a aplicação por qualquer um dos métodos, a documentação interativa estará disponível no seu navegador em:
 - **URL:** `http://127.0.0.1:8000/api/docs`
+
+## 🤖 Meus Outros Projetos de IA
+
+-   **[IA-Produtos](https://github.com/Lvitoria/ia-produtos)** - Um LLM de produtos que utiliza Pinecone para busca e recuperação.
+-   **[AWS-Livro-IA](https://github.com/Lvitoria/AWS-Livro-IA)** - Projeto em Node.js para leitura e processamento de PDFs usando IA na AWS.
