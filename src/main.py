@@ -13,9 +13,9 @@ app = FastAPI(
     title="Petlove Sales Assistant API",
     description="API for the Petlove Sales Assistant",
     version="1.0.0",
-    openapi_url="/api/v1/openapi.json",
-    docs_url="/api/v1/docs",
-    redoc_url="/api/v1/redoc",
+    openapi_url="/api/openapi.json",
+    docs_url="/api/docs",
+    redoc_url="/api/redoc",
     openapi_tags=[
         {
             "name": "Health Check",

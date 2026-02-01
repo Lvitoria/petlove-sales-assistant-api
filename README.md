@@ -27,7 +27,7 @@ Para testar a API sem precisar instalar nada, você pode usar a versão que est�
 
 **Atenção:** Por ser um serviço gratuito, a primeira requisição à API pode demorar um pouco para responder (cold start).
 
--   **Documentação Interativa (Swagger UI):** [https://petlove-sales-assistant-api.onrender.com/api/v1/docs](https://petlove-sales-assistant-api.onrender.com/api/v1/docs)
+-   **Documentação Interativa (Swagger UI):** [https://petlove-sales-assistant-api.onrender.com/api/docs](https://petlove-sales-assistant-api.onrender.com/api/docs)
 
 ### Exemplo de Requisição
 
@@ -112,4 +112,4 @@ Você pode rodar o projeto de duas formas: nativamente com Python ou usando Dock
 ### Documentação Local
 
 Após iniciar a aplicação por qualquer um dos métodos, a documentação interativa estará disponível no seu navegador em:
-- **URL:** `http://127.0.0.1:8000/api/v1/docs`
+- **URL:** `http://127.0.0.1:8000/api/docs`
