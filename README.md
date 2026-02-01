@@ -21,24 +21,41 @@ Este projeto emprega uma arquitetura de **Geração Aumentada por Recuperação 
 -   **Orquestração com LangChain:** Aproveita o poder do **LangChain** para simplificar as interações complexas do pipeline RAG.
 -   **Docs Interativos da API:** Geração automática de documentação interativa da API (Swagger UI).
 
-## 🚀 Primeiros Passos
+## 🚀 Demonstração Online
 
-Siga estas instruções para configurar e executar o projeto localmente.
+Para testar a API sem precisar instalar nada, você pode usar a versão que está no ar na plataforma Render.
+
+**Atenção:** Por ser um serviço gratuito, a primeira requisição à API pode demorar um pouco para responder (cold start).
+
+-   **Documentação Interativa (Swagger UI):** [https://petlove-sales-assistant-api.onrender.com/api/v1/docs](https://petlove-sales-assistant-api.onrender.com/api/v1/docs)
+
+### Exemplo de Requisição
+
+Você pode usar o `curl` para testar o endpoint principal diretamente:
+
+```bash
+curl --location 'https://petlove-sales-assistant-api.onrender.com/api/question-and-answer' \
+--header 'Content-Type: application/json' \
+--data '{
+    "question": "qual a melhor ração para um cão filhote de porte pequeno?"
+}'
+```
+
+## 💻 Configuração para Desenvolvimento Local
+
+As instruções a seguir são para desenvolvedores que desejam clonar, modificar e executar o projeto em sua própria máquina.
 
 ### Pré-requisitos
 
 -   Python 3.9+
--   Um ambiente virtual ativo (por exemplo, `venv`)
+-   Docker (opcional, para rodar com contêineres)
+-   Um ambiente virtual Python (ex: `venv`)
 
 ### 1. Clonar o Repositório
 
 ```bash
 git clone <url-do-seu-repositorio>
 cd petlove-sales-assistant-api
-```
-opcional 
-```bash
-python -m venv venv
 ```
 
 ### 2. Configurar Variáveis de Ambiente
@@ -55,33 +72,31 @@ Este projeto requer uma chave de API para OpenAI.
     ```
     -   Obtenha sua chave OpenAI na [Plataforma OpenAI](https://platform.openai.com/).
 
-### 3. Instalar Dependências
+### 3. Escolha um Método de Execução
 
-Com seu ambiente virtual ativado, instale os pacotes necessários:
+Você pode rodar o projeto de duas formas: nativamente com Python ou usando Docker.
 
-No bash com Windows (opcional caso tenha criado o venv):
+#### Método A: Executando com Python e Venv
 
-```bash
-source venv/Scripts/activate
-```
-instalando
-```bash
-pip install -r requirements.txt
-```
+1.  **Crie e ative o ambiente virtual:**
+    ```bash
+    python -m venv venv
+    source venv/Scripts/activate  # No Windows
+    # source venv/bin/activate    # No Linux/macOS
+    ```
 
-### 4. Executar a Aplicação
+2.  **Instale as dependências:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Você pode executar a aplicação usando Uvicorn. A flag `--reload` permite o recarregamento automático para desenvolvimento.
+3.  **Execute a aplicação:**
+    A flag `--reload` reinicia o servidor automaticamente após mudanças no código.
+    ```bash
+    uvicorn src.main:app --reload
+    ```
 
-```bash
-uvicorn src.main:app --reload
-```
-
-A API estará disponível em `http://127.0.0.1:8000`.
-
-### 5. Rodando com Docker
-
-Como alternativa, você pode construir e executar o projeto usando Docker.
+#### Método B: Executando com Docker
 
 1.  **Construa a imagem Docker:**
     ```bash
@@ -89,31 +104,12 @@ Como alternativa, você pode construir e executar o projeto usando Docker.
     ```
 
 2.  **Execute o contêiner:**
+    O comando `--env-file .env` injeta as variáveis de ambiente no contêiner.
     ```bash
     docker run -p 8000:8000 --env-file .env petlove-sales-assistant-api
     ```
 
-A API estará acessível em `http://localhost:8000`.
+### Documentação Local
 
-## 📚 Documentação da API
-
-Uma vez que a aplicação esteja em execução, você pode acessar a documentação interativa Swagger UI para explorar e testar os endpoints.
-
-**Atenção:** Em ambientes de servidor gratuito, a primeira requisição à API pode demorar um pouco mais para responder (cold start).
-
--   **URL da Swagger UI:** [https://petlove-sales-assistant-api.onrender.com/api/v1/docs](https://petlove-sales-assistant-api.onrender.com/api/v1/docs)
-
-*(Nota: Para desenvolvimento local, a documentação estará em `http://127.0.0.1:8000/api/v1/docs`)*
-
-### Exemplo de Requisição
-
-Aqui está um exemplo de como consultar o endpoint principal:
-
-```bash
-curl --location 'https://petlove-sales-assistant-api.onrender.com/api/question-and-answer' \
---header 'Content-Type: application/json' \
---data '{
-    "question": "qual a melhor ração para um cão filhote de porte pequeno?"
-}'
-```
-
+Após iniciar a aplicação por qualquer um dos métodos, a documentação interativa estará disponível no seu navegador em:
+- **URL:** `http://127.0.0.1:8000/api/v1/docs`
