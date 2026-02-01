@@ -18,7 +18,7 @@ async def chat(
     """
     try:
         chat_service = ChatService()
-        response_content = chat_service.get_response(chat_message.question)
+        response_content = await chat_service.get_response(chat_message.question)
         return ChatResponse(
             response=response_content
         )

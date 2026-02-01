@@ -24,9 +24,9 @@ class ChatService:
             f"O catálogo completo está disponível abaixo: \n{self.database_catalog_context}"
         )
 
-    def get_response(self, message: str) -> str:
+    async def get_response(self, message: str) -> str:
         """
-        Gets a response from the LangChain chat model.
+        Gets a response from the LangChain chat model asynchronously.
 
         Args:
             message: The user's message.
@@ -38,5 +38,5 @@ class ChatService:
             SystemMessage(content=self.system_prompt),
             HumanMessage(content=message),
         ]
-        response = self.llm.invoke(messages)
+        response = await self.llm.ainvoke(messages)
         return response.content
