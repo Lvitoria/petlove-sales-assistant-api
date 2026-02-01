@@ -79,6 +79,22 @@ uvicorn src.main:app --reload
 
 A API estará disponível em `http://127.0.0.1:8000`.
 
+### 5. Rodando com Docker
+
+Como alternativa, você pode construir e executar o projeto usando Docker.
+
+1.  **Construa a imagem Docker:**
+    ```bash
+    docker build -t petlove-sales-assistant-api .
+    ```
+
+2.  **Execute o contêiner:**
+    ```bash
+    docker run -p 8000:8000 --env-file .env petlove-sales-assistant-api
+    ```
+
+A API estará acessível em `http://localhost:8000`.
+
 ## 📚 Documentação da API
 
 Uma vez que a aplicação esteja em execução, você pode acessar a documentação interativa Swagger UI para explorar e testar os endpoints.
