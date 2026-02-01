@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from src.schema.chat import HealthResponse
 
 router = APIRouter()
 
@@ -8,6 +9,6 @@ router = APIRouter()
     description="Endpoint para verificar se a API está funcionando corretamente.",
     tags=["Health Check"]
 )
-def health_check():
+def health_check() -> HealthResponse:
     """Verifica o status da API."""
-    return {"status": "ok"}
+    return HealthResponse(status="ok")

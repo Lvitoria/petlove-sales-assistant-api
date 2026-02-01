@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from src.schema.chat import ChatMessage
+from src.schema.chat import ChatMessage, ChatResponse
 from src.services.chat_service import ChatService
 
 router = APIRouter()
@@ -12,16 +12,16 @@ router = APIRouter()
 )
 async def chat(
     chat_message: ChatMessage
-) -> dict:
+) -> ChatResponse:
     """
     Envia uma mensagem para o modelo OpenAI e recebe uma resposta.
     """
     try:
         chat_service = ChatService()
         response_content = chat_service.get_response(chat_message.question)
-        return {
-            "response": response_content
-        }
+        return ChatResponse(
+            response=response_content
+        )
     except Exception as e:
         raise HTTPException(
             status_code=500,
